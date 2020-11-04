@@ -48,9 +48,6 @@ const Footer = () => (
 let id;
 
 const CreateNew = (props) => {
- // const [content, setContent] = useState('')
- // const [author, setAuthor] = useState('')
- // const [info, setInfo] = useState('')
   const history = useHistory()
   const content = useFiled('content')
   const author = useFiled('author')
@@ -61,15 +58,20 @@ const CreateNew = (props) => {
     if (id)
       clearTimeout(id)
     props.addNew({
-      content: content.value,
-      author: author.value,
-      info: info.value,
+      content: content.fields.value,
+      author: author.fields.value,
+      info: info.fields.value,
       votes: 0
     })
     history.push('/')
-    props.setNotification(`a new anecdote ${content} created!`)
-    console.log(id)
+    props.setNotification(`a new anecdote ${content.fields.value} created!`)
     id = setTimeout(() => {props.setNotification('')}, 10000) 
+  }
+
+  const resetFields = () => () => {
+    content.clear()
+    author.clear()
+    info.clear()
   }
 
   return (
@@ -78,17 +80,18 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input {...content} />
+          <input {...content.fields} />
         </div>
         <div>
           author
-          <input {...author} />
+          <input {...author.fields} />
         </div>
         <div>
           url for more info
-          <input {...info} />
+          <input {...info.fields} />
         </div>
-        <button>create</button>
+        <button type='submit'>create</button>
+        <button type='button' onClick={resetFields()}>reset</button>
       </form>
     </div>
   )

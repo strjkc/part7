@@ -7,9 +7,17 @@ export const useFiled = (name) => {
         setValue(e.target.value)
     }
 
+    const clear = () => {
+        setValue('')
+    }
+
     return {
-        name,
-        value,
-        onChange
+        fields: {
+            name,
+            value,
+            onChange,
+            
+        },
+        clear
     }
 }
