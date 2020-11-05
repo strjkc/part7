@@ -6,9 +6,12 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {Provider} from 'react-redux'
 import notif from './reducers/notificationReducer'
-
+import blog from './reducers/newBlogReducer'
+import blogs from './reducers/blogReducer'
 const reducer = combineReducers({
-  notif
+  notif,
+  blog,
+  blogs
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))

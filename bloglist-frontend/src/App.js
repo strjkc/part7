@@ -7,14 +7,7 @@ import {useDispatch, useSelector} from 'react-redux'
 
 const App = () => {
   const [user, setUser] = useState(null)
-  const notification = useSelector(store => store.notif)
-  //const [notification, setNotification] = useState(null)
-  const dispatch = useDispatch()
 
-  const displayNotification = (text) => {
-    dispatch(setNotification(text))
-//    setTimeout(() => dispatch(removeNotification()), 3000)
-  }
 
   useEffect( () => {
     const savedUser = window.localStorage.getItem('user')
@@ -29,8 +22,8 @@ const App = () => {
     <div>
       {
         user === null
-          ? <Login notification={{ notification, displayNotification }} user={{ user, setUser }}/>
-          : <Main notification={{ notification, displayNotification }}  user={ user }/>
+          ? <Login user={{ user, setUser }}/>
+          : <Main user={ user }/>
       }
     </div>
   )
