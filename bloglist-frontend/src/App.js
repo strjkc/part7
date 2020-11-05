@@ -13,7 +13,7 @@ const App = () => {
 
   const displayNotification = (text) => {
     dispatch(setNotification(text))
-    setTimeout(() => dispatch(removeNotification()), 3000)
+//    setTimeout(() => dispatch(removeNotification()), 3000)
   }
 
   useEffect( () => {
