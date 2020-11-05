@@ -27,20 +27,6 @@ const Main = ({ user }) => {
     window.location.reload()
   }
 
-  const handleLikes = (blog) => {
-      dispatch(likeBlog(blog))
-    }
-
-  const removeBlogs = (blog) => {
-    dispatch(removeBlog(blog.id))
-/*
-    const blogToRemove = blog
-   if(window.confirm(`Remove blog ${blogToRemove.title} by ${blogToRemove.author}`))
-      blogService.deleteBlog(blogToRemove.id)
-        .then(setBlogs(blogs.filter(blog => blog.id !== blogToRemove.id)))
-*/
-      }
-
   const appendBlog = (newBlog) => {
     dispatch(addOneBlog(newBlog))
     dispatch(setNotification(`a new blog ${newBlog.title} by ${newBlog.author} added`))       
@@ -60,7 +46,7 @@ const Main = ({ user }) => {
       </div>
       <div id='blog-container'>
         {blogs.sort((a, b) => b.likes - a.likes).map(blog =>
-        <Blog key={blog.id} blog={blog} user={user} functions={{ removeBlogs, handleLikes }} />
+        <Blog key={blog.id} blog={blog} user={user} />
         )}
       </div>
     </div>

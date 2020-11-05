@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const FullBlog = ({ blog, functions, user }) => {
+import {useDispatch, useSelector} from 'react-redux'
+import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
+const FullBlog = ({ blog, user }) => {
+const dispatch = useDispatch()
   return (
     <div>
       <p>{blog.author}</p>
@@ -9,10 +12,10 @@ const FullBlog = ({ blog, functions, user }) => {
       <p>{blog.url}</p>
       <div>
         <div id='likes'>{blog.likes}</div>
-        <button onClick={ () => functions.handleLikes(blog) }>Like</button>
+        <button onClick={ () =>     dispatch(likeBlog(blog)) }>Like</button>
       </div>
       {blog.user.username === user.username
-      ? <button onClick={ () => functions.removeBlogs(blog) }>Remove</button>
+      ? <button onClick={ () => dispatch(removeBlog(blog.id)) }>Remove</button>
       : <></>
     }
     </div>
@@ -21,7 +24,6 @@ const FullBlog = ({ blog, functions, user }) => {
 
 FullBlog.propTypes = {
   blog: PropTypes.object.isRequired,
-  functions: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired
 }
 
