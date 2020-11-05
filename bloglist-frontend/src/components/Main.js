@@ -5,7 +5,7 @@ import CreationForm from './CreationForm'
 import blogService from '../services/blogs'
 import {setNotification} from '../reducers/notificationReducer'
 import {useDispatch, useSelector} from 'react-redux'
-import {addOneBlog, createBlogs} from '../reducers/blogReducer'
+import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
 
 const Main = ({ user }) => {
   const [displayCreation, setDisplayCreation] = useState(false)
@@ -28,12 +28,11 @@ const Main = ({ user }) => {
   }
 
   const handleLikes = (blog) => {
-/*    blogService.updateLikes(blog)
-      .then(response => setBlogs(blogs.map(blog => blog.id === response.id ? response : blog).sort((a, b) => b.likes - a.likes)))
-*/
+      dispatch(likeBlog(blog))
     }
 
   const removeBlogs = (blog) => {
+    dispatch(removeBlog(blog.id))
 /*
     const blogToRemove = blog
    if(window.confirm(`Remove blog ${blogToRemove.title} by ${blogToRemove.author}`))
@@ -45,14 +44,6 @@ const Main = ({ user }) => {
   const appendBlog = (newBlog) => {
     dispatch(addOneBlog(newBlog))
     dispatch(setNotification(`a new blog ${newBlog.title} by ${newBlog.author} added`))       
-    
-    /*
-    blogService.createBlog(newBlog)
-      .then( response => {
-        setDisplayCreation(false)
-        setBlogs(blogs.concat(response))
-      })
-*/
     }
 
   return (
