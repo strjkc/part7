@@ -4,16 +4,19 @@ import Login from './components/Login'
 import Main from './components/Main'
 import {setNotification, removeNotification} from './reducers/notificationReducer'
 import {useDispatch, useSelector} from 'react-redux'
+import {createUser} from './reducers/userReducer'
 
 const App = () => {
-  const [user, setUser] = useState(null)
-
+  //const [user, setUser] = useState(null)
+  const notification = useSelector(store => store.notif)
+  const dispatch = useDispatch()
+  const user = useSelector(store => store.user)
 
   useEffect( () => {
     const savedUser = window.localStorage.getItem('user')
     if(savedUser)
     {
-      setUser(JSON.parse(savedUser))
+      dispatch(createUser(JSON.parse(savedUser)))
       blogService.setToken(JSON.parse(savedUser).token)
     }
   }, [])
@@ -22,8 +25,8 @@ const App = () => {
     <div>
       {
         user === null
-          ? <Login user={{ user, setUser }}/>
-          : <Main user={ user }/>
+          ? <Login />
+          : <Main />
       }
     </div>
   )

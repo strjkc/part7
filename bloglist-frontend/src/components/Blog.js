@@ -16,7 +16,7 @@ const Blog = ({ blog, functions, user }) => {
       { blog.title }
       <button onClick={() => setDisplayBlog(!displayBlog)}>{displayBlog ? 'Hide' : 'View'}</button>
       <div className='fullBlogContainer' style={showFullBlog}>
-        <FullBlog blog={blog} user={user}/>
+        <FullBlog blog={blog}/>
       </div>
     </div>
   )

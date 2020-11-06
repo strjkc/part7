@@ -7,12 +7,13 @@ import {setNotification} from '../reducers/notificationReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
 
-const Main = ({ user }) => {
+const Main = () => {
   const [displayCreation, setDisplayCreation] = useState(false)
   const blogs = useSelector(store => store.blogs)
   const notification = useSelector(store => store.notif)
   const dispatch = useDispatch()
   const displayCreationForm = { display: displayCreation ? '' : 'none' }
+  const user = useSelector(store => store.user)
 
   useEffect(() =>
       {dispatch(createBlogs())}

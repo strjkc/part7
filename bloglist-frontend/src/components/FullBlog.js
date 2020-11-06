@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
-const FullBlog = ({ blog, user }) => {
+const FullBlog = ({ blog }) => {
 const dispatch = useDispatch()
+const user = useSelector(store => store.user)
   return (
     <div>
       <p>{blog.author}</p>
@@ -12,7 +13,7 @@ const dispatch = useDispatch()
       <p>{blog.url}</p>
       <div>
         <div id='likes'>{blog.likes}</div>
-        <button onClick={ () =>     dispatch(likeBlog(blog)) }>Like</button>
+        <button onClick={ () => dispatch(likeBlog(blog)) }>Like</button>
       </div>
       {blog.user.username === user.username
       ? <button onClick={ () => dispatch(removeBlog(blog.id)) }>Remove</button>
@@ -24,7 +25,6 @@ const dispatch = useDispatch()
 
 FullBlog.propTypes = {
   blog: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
 }
 
 export default FullBlog

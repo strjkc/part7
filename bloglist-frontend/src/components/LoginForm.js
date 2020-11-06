@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
 import blogService from '../services/blogs'
+import {setNotification} from '../reducers/notificationReducer'
+import { useDispatch } from 'react-redux'
+import {createUser} from '../reducers/userReducer'
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
 
   const handleLogin = (event) => {
     event.preventDefault()
     blogService.login({ username, password })
       .then(response => {
-        props.user.setUser(response)
+        dispatch(createUser(response))
         blogService.setToken(response.token)
         window.localStorage.setItem('user', JSON.stringify(response))
       })
       .catch( () => {
-        props.notification.displayNotification('wrong username or password')
-        console.log('error, wrong name')
+        dispatch(setNotification('wrong username or password'))
       })
   }
 

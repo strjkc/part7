@@ -3,9 +3,10 @@ import LoginForm from './LoginForm'
 import Notification from './Notification'
 import {useSelector} from 'react-redux'
 
-const Login = ({ user }) => {
+const Login = () => {
   const notification = useSelector(store => store.notif)
-  
+  const user = useSelector(store => store.user)
+
   const showNotification = () => {
     if (notification !== null)
       return <Notification notificationText={ notification } />
