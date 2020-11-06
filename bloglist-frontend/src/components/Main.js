@@ -6,6 +6,7 @@ import blogService from '../services/blogs'
 import {setNotification} from '../reducers/notificationReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
+import UserDashboard from './UserDashboard'
 
 const Main = () => {
   const [displayCreation, setDisplayCreation] = useState(false)
@@ -50,6 +51,7 @@ const Main = () => {
         <Blog key={blog.id} blog={blog} user={user} />
         )}
       </div>
+      <UserDashboard />
     </div>
   )
 }

@@ -44,7 +44,6 @@ const deleteBlog = (blogId) => {
     }
   }
   return axios.delete(`${baseUrl}/blogs/${blogId}`, config)
-  
 }
 
 export default { getAll, login, setToken, deleteBlog, createBlog, updateLikes }
