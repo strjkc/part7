@@ -15,7 +15,7 @@ useEffect(() => {
 console.log(users)
   return(
     <div>
-      <h1>User</h1>
+      <h1>Users</h1>
       <table>
         <tbody>
           <tr>

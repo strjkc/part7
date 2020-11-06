@@ -7,6 +7,7 @@ import {setNotification} from '../reducers/notificationReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
 import UserDashboard from './UserDashboard'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 const Main = () => {
   const [displayCreation, setDisplayCreation] = useState(false)
@@ -46,12 +47,20 @@ const Main = () => {
         </div>
         <button onClick={() => setDisplayCreation(!displayCreation)}>{displayCreation ? 'Cancel' : 'New blog'}</button>
       </div>
-      <div id='blog-container'>
-        {blogs.sort((a, b) => b.likes - a.likes).map(blog =>
-        <Blog key={blog.id} blog={blog} user={user} />
-        )}
-      </div>
-      <UserDashboard />
+      <Router>
+        <Switch>
+          <Route path='/users'>
+            <UserDashboard />
+          </Route>
+          <Route path='/'>
+            <div id='blog-container'>
+              {blogs.sort((a, b) => b.likes - a.likes).map(blog =>
+              <Blog key={blog.id} blog={blog} user={user} />
+              )}
+            </div>
+          </Route>
+        </Switch>
+      </Router>      
     </div>
   )
 }
