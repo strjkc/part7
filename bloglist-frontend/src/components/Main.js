@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
 import UserDashboard from './UserDashboard'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import UserView from './UserView'
 
 const Main = () => {
   const [displayCreation, setDisplayCreation] = useState(false)
@@ -49,6 +50,9 @@ const Main = () => {
       </div>
       <Router>
         <Switch>
+          <Route path='/users/:id'>
+            <UserView />
+          </Route>
           <Route path='/users'>
             <UserDashboard />
           </Route>
