@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import FullBlog from './FullBlog'
+import {Link} from 'react-router-dom'
 
 const Blog = ({ blog, functions, user }) => {
   const [displayBlog, setDisplayBlog] = useState(false)
@@ -13,11 +13,7 @@ const Blog = ({ blog, functions, user }) => {
 
   return (
     <div className='blogContainer' style={blogStyle}>
-      { blog.title }
-      <button onClick={() => setDisplayBlog(!displayBlog)}>{displayBlog ? 'Hide' : 'View'}</button>
-      <div className='fullBlogContainer' style={showFullBlog}>
-        <FullBlog blog={blog}/>
-      </div>
+      <Link to={`/blogs/${blog.id}`}>{ blog.title }</Link>
     </div>
   )
 }

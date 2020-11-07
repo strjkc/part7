@@ -7,8 +7,10 @@ import {setNotification} from '../reducers/notificationReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {addOneBlog, createBlogs, likeBlog, removeBlog} from '../reducers/blogReducer'
 import UserDashboard from './UserDashboard'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import UserView from './UserView'
+import FullBlog from './FullBlog'
+
 
 const Main = () => {
   const [displayCreation, setDisplayCreation] = useState(false)
@@ -35,23 +37,29 @@ const Main = () => {
     dispatch(addOneBlog(newBlog))
     dispatch(setNotification(`a new blog ${newBlog.title} by ${newBlog.author} added`))       
     }
-
+//TODO: create Header component, Body component
   return (
     <div>
-      <h2>blogs</h2>
-      {showNotification()}
-      <div>
+    <Router>
+      <Link to='/users'>users</Link>
+      <Link to='/'>blogs</Link>
+      <div style={{display:'inline-block'}}>
         {user.name} logged in
         <button onClick={handleLogout}>Logout</button>
-        <div style={displayCreationForm}>
+      </div>
+      <h2>blogs</h2>
+      {showNotification()}
+      <button onClick={() => setDisplayCreation(!displayCreation)}>{displayCreation ? 'Cancel' : 'New blog'}</button>
+
+      <div style={displayCreationForm}>
           <CreationForm appendBlog={appendBlog}/>
         </div>
-        <button onClick={() => setDisplayCreation(!displayCreation)}>{displayCreation ? 'Cancel' : 'New blog'}</button>
-      </div>
-      <Router>
         <Switch>
           <Route path='/users/:id'>
             <UserView />
+          </Route>
+          <Route path='/blogs/:id'>
+            <FullBlog />
           </Route>
           <Route path='/users'>
             <UserDashboard />

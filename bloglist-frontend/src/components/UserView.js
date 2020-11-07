@@ -5,7 +5,7 @@ import {useRouteMatch} from 'react-router-dom'
 const UserView = () => {
   const matcher = useRouteMatch('/users/:id')
   const blogs = useSelector(store => store.blogs.filter(blog => String(blog.user.id) === String(matcher.params.id)))
-
+  // Use redux for list of users maybe
   return (
     <div>
       {blogs[0] ?
