@@ -1,33 +1,23 @@
-import React, { useState } from 'react'
-import blogService from '../services/blogs'
+import React from 'react'
 import {setNotification} from '../reducers/notificationReducer'
 import { useDispatch } from 'react-redux'
 import {createUser} from '../reducers/userReducer'
-import {useCreation} from './Hooks/index'
+import {useCreation} from '../Hooks/index'
 
-const LoginForm = (props) => {
-  const [username, usernameObject, clearUsername] = useCreation('text')
+const LoginForm = () => {
+  const [username, usernameObject] = useCreation('text')
   const [password, passwordObject, clearPassword] = useCreation('password')
   const dispatch = useDispatch()
 
-  const clearForm = () => {
-    clearUsername()
-    clearPassword()
-  }
-
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
-    blogService.login({ username, password })
-      .then(response => {
-        dispatch(createUser(response))
-        blogService.setToken(response.token)
-        window.localStorage.setItem('user', JSON.stringify(response))
-        clearForm()
-      })
-      .catch( () => {
-        dispatch(setNotification('wrong username or password'))
-        clearPassword()
-      })
+    try {
+      await dispatch(createUser({username, password}))
+    } catch(error)
+    {
+      dispatch(setNotification('wrong username or password'))
+      clearPassword()
+    }
   }
 
   return(
@@ -35,11 +25,11 @@ const LoginForm = (props) => {
       <h1>Log in to application:</h1>
       <form onSubmit={handleLogin}>
         <div>
-          username:
+          <span>username:</span>
           <input id='username-input' {...usernameObject}/>
         </div>
         <div>
-          password:
+          <span>password:</span>
           <input id='password-input' {...passwordObject}/>
         </div>
         <button type='submit'>Login</button>
