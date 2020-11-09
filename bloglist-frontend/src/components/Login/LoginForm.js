@@ -1,8 +1,8 @@
 import React from 'react'
-import {setNotification} from '../reducers/notificationReducer'
+import {setNotification} from '../../reducers/notificationReducer'
 import { useDispatch } from 'react-redux'
-import {createUser} from '../reducers/userReducer'
-import {useCreation} from '../Hooks/index'
+import {createUser} from '../../reducers/userReducer'
+import {useCreation} from '../../Hooks/index'
 
 const LoginForm = () => {
   const [username, usernameObject] = useCreation('text')

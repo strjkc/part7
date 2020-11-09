@@ -1,11 +1,8 @@
 import React from 'react'
 import LoginForm from './LoginForm'
-import Notification from './Notification'
-import {useSelector} from 'react-redux'
+import Notification from '../Notification'
 
 const Login = () => {
-  const user = useSelector(store => store.user)
-
   return (
     <div>
       <Notification />      
