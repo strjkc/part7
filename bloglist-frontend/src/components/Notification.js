@@ -1,12 +1,20 @@
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 
-const Notification = (props) => {
+const Notification = () => {
+  const notification = useSelector(store => store.notif)
+
   const notificationStyle = {
     color: 'green',
     border: '3px solid green',
   }
   return (
-    <div style={notificationStyle}>{props.notificationText}</div>
+    <div>
+      { notification ?
+        <div style={notificationStyle}>{notification}</div>
+        : <></>
+      }
+    </div>
   )
 }
 

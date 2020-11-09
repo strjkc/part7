@@ -2,10 +2,17 @@ import React, { useState } from 'react'
 import blogService from '../services/blogs'
 import {updateBlog} from '../reducers/newBlogReducer'
 import { useSelector, useDispatch } from 'react-redux'
+import {addOneBlog} from '../reducers/blogReducer'
+import {setNotification} from '../reducers/notificationReducer'
 
-const CreationForm = ({appendBlog}) => {
+const CreationForm = () => {
   const {title, author, content, url} = useSelector(store => store.blog)
   const dispatch = useDispatch()
+
+  const appendBlog = (newBlog) => {
+    dispatch(addOneBlog(newBlog))
+    dispatch(setNotification(`a new blog ${newBlog.title} by ${newBlog.author} added`))       
+    }
 
   const submitBlog = (event) => {
     event.preventDefault()
