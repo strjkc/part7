@@ -1,6 +1,6 @@
 import React, {useEffect } from 'react'
 import Notification from './Notification'
-import Creation from './Creation'
+import Creation from './Creation/Creation'
 import {useDispatch} from 'react-redux'
 import {createBlogs} from '../reducers/blogReducer'
 import {BrowserRouter as Router} from 'react-router-dom'
