@@ -1,10 +1,9 @@
 import React from 'react'
 import UserView from './UserView'
-import FullBlog from './FullBlog'
-import BlogList from './BlogsList'
+import FullBlog from './Blogs/FullBlog'
+import BlogList from './Blogs/BlogsList'
 import UserDashboard from './UserDashboard'
 import {Switch, Route} from 'react-router-dom'
-import {useSelector} from 'react-redux'
 
 const RoutedBody = () => {
     return(

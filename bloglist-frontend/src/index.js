@@ -8,11 +8,13 @@ import {Provider} from 'react-redux'
 import notif from './reducers/notificationReducer'
 import blogs from './reducers/blogReducer'
 import user from './reducers/userReducer'
+import comments from './reducers/commentReducer'
 
 const reducer = combineReducers({
   notif,
   blogs,
-  user
+  user,
+  comments
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))

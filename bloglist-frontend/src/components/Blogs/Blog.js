@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 
-const Blog = ({ blog, functions, user }) => {
-  const [displayBlog, setDisplayBlog] = useState(false)
-  const showFullBlog = { display: displayBlog ? '' : 'none' }
+const Blog = ({ blog }) => {
 
   const blogStyle = {
     border: '1px black solid',

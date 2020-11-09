@@ -18,7 +18,6 @@ export const createUser = (user) => {
       })
       window.localStorage.setItem('user', JSON.stringify(response))
       blogService.setToken(response.token)
-      console.log(window.localStorage.getItem('user'))
   }
 }
 
