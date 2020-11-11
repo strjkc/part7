@@ -1,11 +1,10 @@
 import React from 'react';
-import {useSelector} from 'react-redux'
 
-const CommentList = () => {
-    const comments = useSelector(store => store.comments)
+const CommentList = ({blog}) => {
+    console.log('blog',blog)
     return (
         <ul>
-            {comments.map(comment => <li key={comment.id}>{comment.content}</li>)}
+            {blog.comments.map(comment => <li key={comment.id}>{comment.content}</li>)}
         </ul> 
     )
 }

@@ -10,11 +10,11 @@ const FullBlog = () => {
 const dispatch = useDispatch()
 const matcher = useRouteMatch('/blogs/:id')
 const blog = useSelector(store => store.blogs.find(blog => String(blog.id) === String(matcher.params.id)))
-
 useEffect(() => {
+  console.log('running')
   if (blog)
     dispatch(initComments(blog.comments))
-}, [blog, dispatch])
+})
 
 return (
     <div>
@@ -26,7 +26,7 @@ return (
           <LikeButton blog={blog} />
           <RemoveButton blog={blog} />
           <p>added by {blog.author}</p>
-          <Comments blogId={matcher.params.id} />
+          <Comments blogId={matcher.params.id} blog={blog} />
         </div> 
       : <></>}
     </div>

@@ -36,6 +36,7 @@ const CreationForm = ({setDisplayCreation}) => {
     event.preventDefault()
     appendBlog({title, author, url})
     clearFields()
+    setDisplayCreation(false)
   }
   return(
     <div>

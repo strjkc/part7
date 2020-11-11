@@ -1,6 +1,5 @@
 import React from 'react';
-
-import {postComments} from '../../reducers/commentReducer'
+import {commentBlog} from '../../reducers/blogReducer'
 import {useDispatch} from 'react-redux'
 import {Form, Button} from 'react-bootstrap'
 
@@ -8,8 +7,11 @@ const CommentsForm = ({blogId}) => {
     const dispatch = useDispatch()
     const submitComment = (e) => {
         e.preventDefault()
+        if (e.target.comment.value.trim() === '')
+          return
         const comment = {content: e.target.comment.value}
-        dispatch(postComments(comment, blogId))
+        dispatch(commentBlog(comment, blogId))
+        e.target.comment.value = ''
       }
 
     return(
