@@ -3,8 +3,19 @@ import { useDispatch } from 'react-redux'
 import {addOneBlog} from '../../reducers/blogReducer'
 import {setNotification} from '../../reducers/notificationReducer'
 import {useCreation} from '../../Hooks/index'
+import {Form, Button} from 'react-bootstrap'
+import styled from 'styled-components'
 
-const CreationForm = () => {
+const ButtonsGroup = styled.div`
+  display: flex; 
+  justify-content: center;
+  > * {
+    width: 80px;
+    margin: 5px 5px;
+  }
+`
+
+const CreationForm = ({setDisplayCreation}) => {
  const [title, titleObject, titleClear] = useCreation('text')
  const [author, authorObject, authorClear] = useCreation('text')
  const [url, urlObject, urlClear] = useCreation('text')
@@ -29,21 +40,15 @@ const CreationForm = () => {
   return(
     <div>
       <h2>Create new</h2>
-      <form onSubmit={submitBlog}>
-        <div>
-          title:
-          <input id='title-input' {...titleObject}></input>
-        </div>
-        <div>
-          author:
-          <input id='author-input' {...authorObject}></input>
-        </div>
-        <div>
-          url:
-          <input id='url-input' {...urlObject}></input>
-        </div>
-        <button type='submit'>Post</button>
-      </form>
+      <Form onSubmit={submitBlog}>
+        <Form.Control id='title-input' placeholder='Title' {...titleObject}></Form.Control>
+        <Form.Control id='author-input' placeholder='Author' {...authorObject}></Form.Control>
+        <Form.Control id='url-input' placeholder='Url' {...urlObject}></Form.Control>
+        <ButtonsGroup>
+          <Button type='submit'>Post</Button>
+          <Button variant='danger' onClick={() => setDisplayCreation(false)}>Cancel</Button>
+        </ButtonsGroup>
+      </Form>
     </div>
   )
 }

@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react'
 import DataRow from './DataRow'
 import userServices from '../services/users' 
 import { useSelector } from 'react-redux'
+import {Table} from 'react-bootstrap'
+import styled from 'styled-components'
+
+const H2 = styled.h2`
+  width: 100%;
+  text-align: left;
+`
 
 const UserDashboard = () => {
 const [users, setUsers] = useState([])
@@ -12,19 +19,18 @@ useEffect(() => {
 .then(resp => setUsers(resp))
 }, [blogs])
 
-console.log(users)
   return(
     <div>
-      <h1>Users</h1>
-      <table>
+      <H2>Users</H2>
+      <Table striped bordered hover >
         <tbody>
           <tr>
             <td></td>
             <td><strong>blogs created</strong></td>
           </tr>
-          {users.map(user => <DataRow user={user} />)}
+          {users.map(user => <DataRow key={user.id} user={user} />)}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 

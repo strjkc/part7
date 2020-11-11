@@ -5,7 +5,7 @@ import {initComments} from '../../reducers/commentReducer'
 import Comments from './Comments'
 import LikeButton from './LikeButton'
 import RemoveButton from './RemoveButton'
-//TODO: concat new comment to state
+
 const FullBlog = () => {
 const dispatch = useDispatch()
 const matcher = useRouteMatch('/blogs/:id')
@@ -14,7 +14,7 @@ const blog = useSelector(store => store.blogs.find(blog => String(blog.id) === S
 useEffect(() => {
   if (blog)
     dispatch(initComments(blog.comments))
-}, [blog])
+}, [blog, dispatch])
 
 return (
     <div>

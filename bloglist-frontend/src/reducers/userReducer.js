@@ -27,7 +27,7 @@ export const loadUser = () => {
     if (savedUser){
       dispatch({
         type: 'ADD_USER',
-        data: savedUser
+        data: JSON.parse(savedUser)
       })
       blogService.setToken(JSON.parse(savedUser).token)
     }

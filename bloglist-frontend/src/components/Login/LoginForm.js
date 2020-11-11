@@ -3,6 +3,7 @@ import {setNotification} from '../../reducers/notificationReducer'
 import { useDispatch } from 'react-redux'
 import {createUser} from '../../reducers/userReducer'
 import {useCreation} from '../../Hooks/index'
+import {Form, Button} from 'react-bootstrap'
 
 const LoginForm = () => {
   const [username, usernameObject] = useCreation('text')
@@ -23,17 +24,11 @@ const LoginForm = () => {
   return(
     <div id='login-container'>
       <h1>Log in to application:</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <span>username:</span>
-          <input id='username-input' {...usernameObject}/>
-        </div>
-        <div>
-          <span>password:</span>
-          <input id='password-input' {...passwordObject}/>
-        </div>
-        <button type='submit'>Login</button>
-      </form>
+      <Form onSubmit={handleLogin}>
+          <Form.Control id='username-input' placeholder='Username' {...usernameObject}/>
+          <Form.Control id='password-input' placeholder='Password' {...passwordObject}/>
+        <Button variant='primary' type='submit'>Login</Button>
+      </Form>
     </div>
   )
 }
